@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello, World! - A-Frame</title>
+        <meta name="description" content="Hello, World! - A-Frame">
+        <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+        <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <audio src="bg.wav" autoplay preload></audio>
+        
+        <a-assets>
+        <a-asset-item id="myPlyModel" src="fox.ply"<a-assets>
+      </a-assets>
+        <a-entity ply-model="src:#myPlyModel" rotation="-90 0 0" position="-3.06 0 -4.39" scale="0.01 0.01 0.01" id="fox">
+          <a-animation begin="mouseenter" attribute="position" to="-3.06 0.3 -4.39" direction="alternate" dur="100" repeat="1"></a-animation>
+        </a-entity>
+        
+     
+        
+        
+        
+      
+      
+        <a-entity position="0 0 0" camera="active:true;userHeight:1.6;near:0.01" wasd-controls="" rotation="0 0 0" look-controls="" aframe-injected="" data-aframe-inspector="default-camera" id="char" light="groundColor:#31ff0d;distance:7.78;penumbra:1;type:spot;angle:60">
+            <a-cursor></a-cursor>
+        </a-entity>
+        
+<a-plane src="chao.jpg" position="0 0 -4" rotation="-90 0 0" width="1000" height="1000" geometry="primitive:plane;width:1000;height:1000" material="repeat:25 25;src:url(chao.jpg);color:#43ff0d"></a-plane>
+
+        
+        
+        
+      <a-sky src="sky.jpg" material="color:#FFF;shader:flat;src:url(sky.jpg)" geometry="primitive:sphere;radius:452.08;segmentsWidth:64;segmentsHeight:20;phiLength:360;phiStart:0;thetaLength:90" scale="-1 1 1" position="0 0 0"></a-sky>
+    </a-scene>
+  </body>
+</html>
