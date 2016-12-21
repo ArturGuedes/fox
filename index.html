@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="theme-color" content="#4a525a">
+        <meta name="theme-color" content="#353449">
         <title>VRFox</title>
         <script src="aframe.js"></script>
         <script src="skyGradient.js"></script>
@@ -50,11 +50,9 @@
                 
                 <!-- Efeitos -->
                 <a-entity id="luz" light="type: point" position="0 7 0"></a-entity>
-                <a-entity id="particulas" position="0 0 0" particle-system="preset: dust" rotation="" scale="" visible=""></a-entity>
+                <a-entity id="particulas" position="0 0 0" particle-system="preset: dust maxParticleCount: 500" rotation="" scale="" visible=""></a-entity>
                 <a-ocean id="oceano" position="0 -0.5 25" width="50" depth="50" density="40"></a-ocean>
             </a-entity>
-            
-            <a-entity position="1.55 3 3.3" rotation="0 180 0" text="text:Em breve;amount:0.05"></a-entity>
     </a-scene>
   </body>
 </html>
