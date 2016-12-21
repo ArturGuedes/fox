@@ -2,38 +2,62 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>fox vr</title>
-        <meta name="description" content="Hello, World! - A-Frame">
-        <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
-        <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-    <audio src="bg.wav" autoplay preload></audio>
-        
-        <a-assets>
-        <a-asset-item id="myPlyModel" src="fox.ply"<a-assets>
-      </a-assets>
-        <a-entity ply-model="src:#myPlyModel" rotation="-90 0 0" position="-3.06 0 -4.39" scale="0.01 0.01 0.01" id="fox">
-          <a-animation begin="mouseenter" attribute="position" to="-3.06 0.3 -4.39" direction="alternate" dur="100" repeat="1"></a-animation>
-        </a-entity>
-        
-     
-        
-        
-        
-      
-      
-        <a-entity position="0 0 0" camera="active:true;userHeight:1.6;near:0.01" wasd-controls="" rotation="0 0 0" look-controls="" aframe-injected="" data-aframe-inspector="default-camera" id="char" light="groundColor:#31ff0d;distance:7.78;penumbra:1;type:spot;angle:60">
-            <a-cursor></a-cursor>
-        </a-entity>
-        
-<a-plane src="chao.jpg" position="0 0 -4" rotation="-90 0 0" width="1000" height="1000" geometry="primitive:plane;width:1000;height:1000" material="repeat:25 25;src:url(chao.jpg);color:#43ff0d"></a-plane>
-
-        
-        
-        
-      <a-sky src="sky.jpg" material="color:#FFF;shader:flat;src:url(sky.jpg)" geometry="primitive:sphere;radius:452.08;segmentsWidth:64;segmentsHeight:20;phiLength:360;phiStart:0;thetaLength:90" scale="-1 1 1" position="0 0 0"></a-sky>
+        <meta name="theme-color" content="#4a525a">
+        <title>VRFox</title>
+        <script src="aframe.js"></script>
+        <script src="skyGradient.js"></script>
+        <script src="aframe-particle-system-component.min.js"></script>
+        <script src="aframe-extras.js"></script>
+    </head>
+    <body>
+        <a-scene fog="color: #bc483e; density: 0; far: 10; near: 0">
+            <!-- Texturas -->
+            <a-assets>
+                <a-asset-item id="fox" src="fox.ply" </a-asset-item>
+                <a-asset-item id="arbusto" src="arbusto.ply" </a-asset-item>
+                <a-asset-item id="cenario" src="cenario.ply" </a-asset-item>
+            </a-assets>
+            
+            <!-- UI -->
+            <a-entity id="camera" camera="active:true;near:0.01;userHeight:1.6" position="0 0 -1" wasd-controls="adEnabled: false; wsEnabled: false" look-controls="" aframe-injected="" data-aframe-inspector="default-camera">
+                <a-cursor material="opacity: 0.8; shader: flat; color: #ffffff"></a-cursor>
+            </a-entity>        
+            
+            <a-entity id="fundo">
+                <a-entity id="ceu" geometry="mergeTo:null;primitive:sphere;radius:65" material="shader:skyGradient;side:back;colorTop:#353449;colorBottom:#BC483E" position="" rotation="" scale="" visible=""></a-entity>
+                <a-plane rotation="-90 0  0" position="0 -0.9 0" width="150" height="150" geometry="primitive:plane;width:150;height:150" material="color:#001cdf"></a-plane>
+            </a-entity>
+            
+            <a-entity id="cenario">
+                <a-entity id="fox" ply-model="src:#fox" rotation="-90 16 0" position="-1.55 0.36 -6.20" scale="0.1 0.1 0.1" visible="">
+                    <a-animation begin="mouseenter" attribute="position" to="-1.55 0.5 -6.20" direction="alternate" dur="100" repeat="1"></a-animation>
+                </a-entity>
+                
+                <a-entity id="arbustos">
+                    <a-entity ply-model="src:#arbusto" rotation="-90 -122 0" position="-7 0.36 -7.5" scale="0.1 0.1 0.1" visible=""></a-entity>
+                    <a-entity ply-model="src:#arbusto" rotation="-90 41 0" position="0 0 -8" scale="0.1 0.1 0.1" visible=""></a-entity>
+                    <a-entity ply-model="src:#arbusto" rotation="-90 -0.3 0" position="1.5 -0.32 -4" scale="0.1 0.1 0.1" visible=""></a-entity>                
+                    <a-entity ply-model="src:#arbusto" rotation="-90 0 0" position="7 0.3 -7" scale="0.1 0.1 0.1" visible=""></a-entity>
+                    <a-entity ply-model="src:#arbusto" rotation="-90 71 0" position="-11 0 -3.5" scale="0.1 0.1 0.1" visible=""></a-entity>
+                </a-entity>
+                
+                <a-entity id="solo">
+                    <a-plane rotation="-90 0  0" position="0 .36 -23" width="40" height="30" geometry="primitive:plane;width:1000;height:1000" material="color:#2c4613" scale="" visible=""></a-plane>
+                    <a-entity ply-model="src:#cenario" rotation="-90 0 0" position="0 -0.52 -4" scale="0.1 0.1 0.1" visible=""></a-entity>
+                    <a-entity ply-model="src:#cenario" rotation="-90 0 0" position="-9.8 -0.52 -3.94" scale="0.1 0.1 0.1" visible=""></a-entity>
+                    <a-entity ply-model="src:#cenario" rotation="-90 0 0" position="12.57 -0.52 -4" scale="0.1 0.1 0.1" visible=""></a-entity>
+                </a-entity>
+                
+                <!-- Efeitos -->
+                <a-entity id="luz" light="type: point" position="0 7 0"></a-entity>
+                <a-entity id="particulas" position="0 0 0" particle-system="preset: dust" rotation="" scale="" visible=""></a-entity>
+                <a-ocean id="oceano" position="0 -0.5 25" width="50" depth="50" density="40"></a-ocean>
+            </a-entity>
+            
+            <a-entity position="1.55 3 3.3" rotation="0 180 0" text="text:Em breve;amount:0.05"></a-entity>
     </a-scene>
   </body>
 </html>
+
+
+
