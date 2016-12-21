@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="theme-color" content="#353449">
+        <meta name="theme-color" content="#BC483E">
         <title>VRFox</title>
         <script src="aframe.js"></script>
         <script src="skyGradient.js"></script>
@@ -21,7 +21,9 @@
             <!-- UI -->
             <a-entity id="camera" camera="active:true;near:0.01;userHeight:1.6" position="0 0 -1" wasd-controls="adEnabled: false; wsEnabled: false" look-controls="" aframe-injected="" data-aframe-inspector="default-camera">
                 <a-cursor material="opacity: 0.8; shader: flat; color: #ffffff"></a-cursor>
-            </a-entity>        
+            </a-entity>   
+            
+            <audio src="bg.wav" autoplay loop  preload></audio>
             
             <a-entity id="fundo">
                 <a-entity id="ceu" geometry="mergeTo:null;primitive:sphere;radius:65" material="shader:skyGradient;side:back;colorTop:#353449;colorBottom:#BC483E" position="" rotation="" scale="" visible=""></a-entity>
